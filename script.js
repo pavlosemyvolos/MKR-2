@@ -1,9 +1,11 @@
 class Drib {
     constructor(numerator, denominator) {
+        if (denominator === 0) {
+            throw new Error("Знаменник не може бути нулем!");
+        }
         this.numerator = numerator;
         this.denominator = denominator;
     }
-
     add(otherDrib) {
         const newNumerator = this.numerator * otherDrib.denominator + otherDrib.numerator * this.denominator;
         const newDenominator = this.denominator * otherDrib.denominator;
@@ -33,13 +35,19 @@ class Drib {
     }
 }
 
-function calculate() {
-    const numerator1 = parseInt(document.getElementById('numerator1').value);
-    const denominator1 = parseInt(document.getElementById('denominator1').value);
-    const numerator2 = parseInt(document.getElementById('numerator2').value);
-    const denominator2 = parseInt(document.getElementById('denominator2').value);
-    const drib1 = new Drib(numerator1, denominator1);
-    const drib2 = new Drib(numerator2, denominator2);
+function calculate() { 
+        const numerator1 = parseInt(document.getElementById('numerator1').value);
+        const denominator1 = parseInt(document.getElementById('denominator1').value);
+        const numerator2 = parseInt(document.getElementById('numerator2').value);
+        const denominator2 = parseInt(document.getElementById('denominator2').value);
+    
+        if (denominator1 === 0 || denominator2 === 0) {
+            alert("Знаменник не може бути нулем!");
+            return;
+        }
+    
+        const drib1 = new Drib(numerator1, denominator1);
+        const drib2 = new Drib(numerator2, denominator2);
 
     const operation = document.getElementById('operation').value;
 
